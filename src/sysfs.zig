@@ -23,12 +23,7 @@ pub fn enumClass(comptime class: []const u8, callback: *const EnumCallback) Enum
     const path = "/sys/class/" ++ class;
 
     // TODO: Is there better unwrap syntax?
-    const dir_raw = DirIter.init(path);
-    if (dir_raw == null) {
-        return EnumError.OpenDirFailed;
-    }
-
-    var dir = dir_raw.?;
+    var dir = DirIter.init(path) orelse return EnumError.OpenDirFailed;
     defer dir.deinit();
 
     while (dir.next()) |entry| {

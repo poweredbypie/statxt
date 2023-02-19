@@ -3,11 +3,8 @@ const c = @cImport({
 });
 
 pub fn alloc(comptime T: type, count: usize) ?[]T {
-    if (@ptrCast(?[*]T, c.malloc(@sizeOf(T) * count))) |block| {
-        return block[0..count];
-    }
-
-    return null;
+    const block = @ptrCast(?[*]T, c.malloc(@sizeOf(T) * count)) orelse return null;
+    return block[0..count];
 }
 
 pub fn free(slice_raw: ?[]anyopaque) void {

@@ -9,13 +9,10 @@ pub fn contains(str: []const u8, substr: []const u8) bool {
 }
 
 pub fn find(str: []const u8, char: u8) ?usize {
-    if (c.strchr(str.ptr, char)) |ptr| {
-        // This is kind of goofy but I think it's better than raw pointers.
-        const idx = ptr - @ptrToInt(str.ptr);
-        return @ptrToInt(idx);
-    }
-
-    return null;
+    const ptr = c.strchr(str.ptr, char) orelse return null;
+    // This is kind of goofy but I think it's better than raw pointers.
+    const idx = ptr - @ptrToInt(str.ptr);
+    return @ptrToInt(idx);
 }
 
 pub fn toInt(str: []const u8) i32 {
