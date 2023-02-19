@@ -2,7 +2,7 @@
 Very simple status bar for my desktop usage.
 
 This project is optimized with the goal to create an extremely small binary:
-the output with `-Drelease-small` is around 8.3KB with glibc.
+the output with `-Drelease-small` is around 6.2KB with glibc.
 
 Because of this, I'm not making much use of the Zig standard library at all.
 I'm mostly choosing to write this in Zig because it's more ergonomic than C,
