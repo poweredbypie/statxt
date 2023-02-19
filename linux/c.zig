@@ -7,5 +7,6 @@ pub usingnamespace @cImport({
     @cInclude("stdlib.h");
     @cInclude("string.h");
     @cInclude("sys/stat.h");
+    @cInclude("time.h");
     @cInclude("unistd.h");
 });
