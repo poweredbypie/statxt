@@ -28,7 +28,7 @@ fn checkSupply(supply_type: []u8) bool {
     status[newline] = 0;
     const percent = (charge / full) * 100.0;
 
-    io.print("%.3lf%% (%s)\n", .{ percent, status.ptr });
+    io.print("%.3lf%% (%s)", .{ percent, status.ptr });
 
     return true;
 }
