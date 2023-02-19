@@ -1,4 +1,6 @@
 # statxt
+![This is what it looks like.](misc/img.png)
+
 Very simple status bar for my desktop usage.
 
 This project is optimized with the goal to create an extremely small binary:
