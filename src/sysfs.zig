@@ -4,8 +4,6 @@ const DirIter = linux.fs.DirIter;
 
 const util = @import("util.zig");
 
-const dbgout = @import("std").io.getStdOut().writer();
-
 pub const EnumError = error{ OpenDirFailed, ChangeDirFailed, NoMatches };
 
 fn cd(path: []const u8) EnumError!void {
