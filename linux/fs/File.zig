@@ -10,9 +10,7 @@ file: *c.FILE,
 
 pub fn init(path: []const u8) ?Self {
     // Currently I only read from files so it's always `rb`.
-    const file_raw = c.fopen(path.ptr, "rb");
-
-    if (file_raw) |file| {
+    if (c.fopen(path.ptr, "rb")) |file| {
         return Self {
             .path = path,
             .file = file

@@ -5,22 +5,19 @@ const c = @cImport({
 });
 
 pub fn contains(str: []const u8, substr: []const u8) bool {
-    const ptr = c.strstr(str.ptr, substr.ptr);
-    return (ptr != null);
+    return (c.strstr(str.ptr, substr.ptr) != null);
 }
 
 pub fn find(str: []const u8, char: u8) ?usize {
-    const ptr = c.strchr(str.ptr, char);
-    if (ptr == null) {
-        return null;
+    if (c.strchr(str.ptr, char)) |ptr| {
+        // This is kind of goofy but I think it's better than raw pointers.
+        const idx = ptr - @ptrToInt(str.ptr);
+        return @ptrToInt(idx);
     }
 
-    // This is kind of goofy but I think it's better than raw pointers.
-    const idx = ptr - @ptrToInt(str.ptr);
-    return @ptrToInt(idx);
+    return null;
 }
 
 pub fn toInt(str: []const u8) i32 {
-    const num = c.strtol(str.ptr, null, 10);
-    return @intCast(i32, num);
+    return @intCast(i32, c.strtol(str.ptr, null, 10));
 }

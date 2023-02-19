@@ -3,8 +3,7 @@ const c = @cImport({
 });
 
 pub fn alloc(comptime T: type, count: usize) ?[]T {
-    const block_raw = @ptrCast(?[*]T, c.malloc(@sizeOf(T) * count));
-    if (block_raw) |block| {
+    if (@ptrCast(?[*]T, c.malloc(@sizeOf(T) * count))) |block| {
         return block[0..count];
     }
 

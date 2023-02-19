@@ -25,8 +25,7 @@ entry: c.dirent,
 dir: *c.DIR,
 
 pub fn init(path: []const u8) ?Self {
-    const dir_raw = c.opendir(path.ptr);
-    if (dir_raw) |dir| {
+    if (c.opendir(path.ptr)) |dir| {
         return Self {
             .entry = undefined,
             .dir = dir
@@ -37,8 +36,7 @@ pub fn init(path: []const u8) ?Self {
 }
 
 pub fn next(self: *Self) ?Entry {
-    const entry_raw = c.readdir(self.dir);
-    if (entry_raw) |entry| {
+    if (c.readdir(self.dir)) |entry| {
         const entry_type = switch (entry.*.d_type) {
             c.DT_BLK => EntryType.BLOCK,
             c.DT_CHR => EntryType.CHAR,

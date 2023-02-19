@@ -43,16 +43,12 @@ pub fn enumClass(comptime class: []const u8, callback: *const EnumCallback) Enum
 
         try cd(&entry.name);
 
-        const class_type_raw = util.fileToSlice("type");
-        if (class_type_raw == null) {
-            continue;
-        }
+        if (util.fileToSlice("type")) |class_type| {
+            defer mem.free(class_type);
 
-        const class_type = class_type_raw.?;
-        defer mem.free(class_type);
-
-        if (callback(class_type)) {
-            return;
+            if (callback(class_type)) {
+                return;
+            }
         }
     }
 
