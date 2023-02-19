@@ -1,7 +1,4 @@
-const c = @cImport({
-    @cInclude("dirent.h");
-    @cInclude("errno.h");
-});
+const c = @import("../c.zig");
 
 pub const EntryType = enum { BLOCK, CHAR, DIR, FIFO, LINK, REG, SOCK, UNKNOWN };
 

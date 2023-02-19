@@ -1,6 +1,4 @@
-const c = @cImport({
-    @cInclude("stdlib.h");
-});
+const c = @import("c.zig");
 
 pub fn alloc(comptime T: type, count: usize) ?[]T {
     const block = @ptrCast(?[*]T, c.malloc(@sizeOf(T) * count)) orelse return null;

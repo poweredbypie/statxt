@@ -1,7 +1,4 @@
-const c = @cImport({
-    @cInclude("stdio.h");
-    @cInclude("sys/stat.h");
-});
+const c = @import("../c.zig");
 
 const Self = @This();
 

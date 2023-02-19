@@ -1,8 +1,4 @@
-const c = @cImport({
-    @cInclude("errno.h");
-    @cInclude("stdlib.h");
-    @cInclude("string.h");
-});
+const c = @import("c.zig");
 
 pub fn contains(str: []const u8, substr: []const u8) bool {
     return (c.strstr(str.ptr, substr.ptr) != null);
