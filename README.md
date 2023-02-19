@@ -12,7 +12,11 @@ This isn't configurable at all; if you want to change how it looks, you have to 
 I've done this on purpose because parsing is too hard, considering how simple this code is.
 
 ## Building
-You must have Zig 0.10.0.
+I use Nix to build this.
+```sh
+nix build .
+```
+You can also build this manually. You must have Zig 0.10.0.
 ```sh
 zig build -Drelease-small
 ```
