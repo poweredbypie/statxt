@@ -1,6 +1,9 @@
 const linux = @import("linux");
 const cstr = linux.cstr;
+
 const sysfs = @import("sysfs.zig");
+const EnumError = sysfs.EnumError;
+
 const util = @import("util.zig");
 
 fn fileToNum(path: []const u8) ?f64 {
@@ -29,6 +32,13 @@ fn checkSupply(supply_type: []u8) bool {
     return true;
 }
 
-pub fn printBattery() !void {
-    try sysfs.enumClass("power_supply", checkSupply);
+pub fn printBattery() void {
+    sysfs.enumClass("power_supply", checkSupply) catch |err| switch (err) {
+        EnumError.OpenDirFailed, EnumError.ChangeDirFailed => {
+            linux.io.eprint("IO error while searching batteries\n", .{});
+        },
+        EnumError.NoMatches => {
+            linux.io.eprint("Couldn't find a battery device\n", .{});
+        }
+    };
 }

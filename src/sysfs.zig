@@ -6,7 +6,7 @@ const util = @import("util.zig");
 
 const dbgout = @import("std").io.getStdOut().writer();
 
-const EnumError = error {
+pub const EnumError = error {
     OpenDirFailed,
     ChangeDirFailed,
     NoMatches
