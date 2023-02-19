@@ -39,6 +39,6 @@ pub fn printBattery() void {
         },
         EnumError.NoMatches => {
             linux.io.eprint("Couldn't find a battery device\n", .{});
-        }
+        },
     };
 }

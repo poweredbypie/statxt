@@ -6,11 +6,7 @@ const util = @import("util.zig");
 
 const dbgout = @import("std").io.getStdOut().writer();
 
-pub const EnumError = error {
-    OpenDirFailed,
-    ChangeDirFailed,
-    NoMatches
-};
+pub const EnumError = error{ OpenDirFailed, ChangeDirFailed, NoMatches };
 
 fn cd(path: []const u8) EnumError!void {
     if (!linux.fs.cd(path)) {
@@ -18,7 +14,7 @@ fn cd(path: []const u8) EnumError!void {
     }
 }
 
-pub const EnumCallback = fn([]u8) bool;
+pub const EnumCallback = fn ([]u8) bool;
 pub fn enumClass(comptime class: []const u8, callback: *const EnumCallback) EnumError!void {
     const path = "/sys/class/" ++ class;
 

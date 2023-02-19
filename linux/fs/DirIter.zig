@@ -3,21 +3,9 @@ const c = @cImport({
     @cInclude("errno.h");
 });
 
-pub const EntryType = enum {
-    BLOCK,
-    CHAR,
-    DIR,
-    FIFO,
-    LINK,
-    REG,
-    SOCK,
-    UNKNOWN
-};
+pub const EntryType = enum { BLOCK, CHAR, DIR, FIFO, LINK, REG, SOCK, UNKNOWN };
 
-pub const Entry = struct {
-    name: [256]u8,
-    type: EntryType
-};
+pub const Entry = struct { name: [256]u8, type: EntryType };
 
 const Self = @This();
 
@@ -26,10 +14,7 @@ dir: *c.DIR,
 
 pub fn init(path: []const u8) ?Self {
     const dir = c.opendir(path.ptr) orelse return null;
-    return Self {
-        .entry = undefined,
-        .dir = dir
-    };
+    return Self{ .entry = undefined, .dir = dir };
 }
 
 pub fn next(self: *Self) ?Entry {
@@ -42,13 +27,10 @@ pub fn next(self: *Self) ?Entry {
         c.DT_LNK => EntryType.LINK,
         c.DT_REG => EntryType.REG,
         c.DT_SOCK => EntryType.SOCK,
-        else => EntryType.UNKNOWN
+        else => EntryType.UNKNOWN,
     };
 
-    return Entry {
-        .name = entry.*.d_name,
-        .type = entry_type
-    };
+    return Entry{ .name = entry.*.d_name, .type = entry_type };
 }
 
 pub fn deinit(self: *Self) void {

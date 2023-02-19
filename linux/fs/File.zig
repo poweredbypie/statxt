@@ -11,10 +11,7 @@ file: *c.FILE,
 pub fn init(path: []const u8) ?Self {
     // Currently I only read from files so it's always `rb`.
     const file = c.fopen(path.ptr, "rb") orelse return null;
-    return Self {
-        .path = path,
-        .file = file
-    };
+    return Self{ .path = path, .file = file };
 }
 
 pub fn size(self: *const Self) usize {

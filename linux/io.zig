@@ -3,7 +3,7 @@ const c = @cImport({
 });
 
 pub fn print(comptime fmt: []const u8, args: anytype) void {
-    _ = @call(.{}, c.printf, .{ fmt.ptr } ++ args);
+    _ = @call(.{}, c.printf, .{fmt.ptr} ++ args);
 }
 
 pub fn eprint(comptime fmt: []const u8, args: anytype) void {
