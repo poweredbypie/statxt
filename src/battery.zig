@@ -21,6 +21,7 @@ fn checkSupply(supply_type: []u8) bool {
     const charge = fileToNum("charge_now") orelse return false;
     const full = fileToNum("charge_full") orelse return false;
     const status = util.fileToSlice("status") orelse return false;
+    defer linux.mem.free(status);
 
     // We want to ignore the newline in the status.
     const newline = cstr.find(status, '\n') orelse return false;
