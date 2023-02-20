@@ -16,7 +16,7 @@ I've done this on purpose because parsing is too hard, considering how simple th
 ## Building
 I use Nix (with flakes enabled) to build this.
 ```sh
-nix build .
+nix build
 ```
 You can also build this manually. You must have Zig 0.10.0.
 ```sh
