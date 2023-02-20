@@ -11,7 +11,7 @@
     };
   in
   {
-    defaultPackage."${system}" = pkgs.stdenv.mkDerivation rec {
+    packages."${system}".default = pkgs.stdenv.mkDerivation rec {
       pname = "statxt";
       version = "0.1.0";
 
