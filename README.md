@@ -14,7 +14,7 @@ This isn't configurable at all; if you want to change how it looks, you have to 
 I've done this on purpose because parsing is too hard, considering how simple this code is.
 
 ## Building
-I use Nix to build this.
+I use Nix (with flakes enabled) to build this.
 ```sh
 nix build .
 ```
