@@ -1,0 +1,25 @@
+name: Create release
+
+on:
+  push:
+    tags:
+    - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3.3.0
+    - uses: cachix/install-nix-action@v19
+    - run: nix build
+    - uses: actions/upload-artifact@v3.1.2
+      with:
+        name: "statxt"
+        path: "result/bin/statxt"
+    - uses: softprops/action-gh-release@v0.1.15
+      with:
+        files: "result/bin/statxt"
