@@ -4,7 +4,7 @@
 Very simple status bar for my desktop usage.
 
 This project is optimized with the goal to create an extremely small binary:
-the output with `-Drelease-small` is around 6.2KB with glibc.
+the output with `-Doptimize=ReleaseSmall` is around 6.2KB with glibc.
 
 Because of this, I'm not making much use of the Zig standard library at all.
 I'm mostly choosing to write this in Zig because it's more ergonomic than C,
@@ -18,7 +18,7 @@ I use Nix (with flakes enabled) to build this.
 ```sh
 nix build
 ```
-You can also build this manually. You must have Zig 0.10.0.
+You can also build this manually. You must have Zig 0.13.0.
 ```sh
-zig build -Drelease-small
+zig build -Doptimize=ReleaseSmall
 ```
