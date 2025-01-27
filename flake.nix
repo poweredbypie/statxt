@@ -27,7 +27,7 @@
 
       installPhase = ''
         runHook preInstall
-        zig build -Drelease-small -Dcpu=baseline --prefix $out install
+        zig build -Doptimize=ReleaseSmall -Dcpu=baseline --prefix $out install
         runHook postInstall
       '';
     };

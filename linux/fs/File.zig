@@ -15,7 +15,7 @@ pub fn size(self: *const Self) usize {
     var stats: c.struct_stat = undefined;
     _ = c.stat(self.path.ptr, &stats);
 
-    return @intCast(usize, stats.st_size);
+    return @intCast(stats.st_size);
 }
 
 pub fn read(self: *Self, buf: []u8) void {

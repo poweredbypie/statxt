@@ -10,7 +10,7 @@ const util = @import("util.zig");
 fn fileToNum(path: []const u8) ?f64 {
     const slice = util.fileToSlice(path) orelse return null;
     defer linux.mem.free(slice);
-    return @intToFloat(f64, cstr.toInt(slice));
+    return @floatFromInt(cstr.toInt(slice));
 }
 
 fn checkSupply(supply_type: []u8) bool {
